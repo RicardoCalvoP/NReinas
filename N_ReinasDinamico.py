@@ -1,3 +1,5 @@
+import os
+
 def resolverNreinas(size):
     global num_soluciones
     num_soluciones = 0
@@ -12,8 +14,19 @@ def crear_tablero(size):
 
 
 def imprimir_tablero(tablero):
-    for fila in tablero:
-        print(' '.join(fila))
+    # Etiquetas de las columnas
+    print('   ', end='')
+    for i in range(len(tablero)):
+        print(f'{chr(65 + i)} ', end='')
+    print()
+
+    for i, fila in enumerate(tablero):
+        # Etiqueta de la fila
+        print(f'{i + 1:2} ', end='')
+
+        for casilla in fila:
+            print(f'{casilla} ', end='')
+        print()
 
 
 def es_seguro(tablero, fila, columna, size):
@@ -45,8 +58,6 @@ def colocar_reinas(tablero, fila, size):
     global num_soluciones
     if fila == size:
         num_soluciones += 1
-        """if size > 9:
-            return"""
         print(f"Solución #{num_soluciones}")
         imprimir_tablero(tablero)
         return
@@ -58,4 +69,7 @@ def colocar_reinas(tablero, fila, size):
             tablero[fila][columna] = '*'
 
 
-resolverNreinas(11)  # Cambia el número de reinas aquí
+os.system("cls")
+size =  int(input("Ingrese el numero de Reinas: "))
+os.system("cls")
+resolverNreinas(size)  # Cambia el número de reinas aquí
